@@ -30,7 +30,7 @@ module.exports = {
             'image/jpeg',
             'image/pjpeg',
             'image/png',
-            'image/git'
+            'image/gif'
         ]
 
         if (allowedMimes.includes(file.mimetype)) {
