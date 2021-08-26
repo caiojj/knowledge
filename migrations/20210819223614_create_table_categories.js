@@ -5,7 +5,6 @@ exports.up = function(knex) {
       table.string('name').notNull()
       table.integer('parentId').references('id')
         .inTable('categories')
-
   })
 };
 

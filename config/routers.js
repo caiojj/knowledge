@@ -1,5 +1,7 @@
-module.exports = app => {
+const multer = require('multer')
+const multerConfig = require('../config/multer')
 
+module.exports = app => {
     app.post('/signup', app.api.user.save)
     app.post('/singing', app.api.auth.singing)
     app.post('/validationToken', app.api.auth.validationToken)
@@ -35,8 +37,18 @@ module.exports = app => {
         .get(app.api.articles.getById)
         .put(app.api.articles.save)
         .delete(app.api.articles.remove)
+
+    app.route('/myArticles/:id')
+        .all(app.config.passport.authenticate())
+        .get(app.api.articles.myArticles)
     
     app.route('/categories/:id/articles')
         .all(app.config.passport.authenticate())
         .get(app.api.articles.getByCategory)
+        
+    app.route('/profile/:id')
+        .post(multer(multerConfig).single('file'), app.api.profile.save)
+
+    app.route('/profile/:filename')
+        .get(app.api.profile.getImage)
 }
