@@ -14,15 +14,21 @@ module.exports = app => {
 
         try {
             existsOrError(user.name, "Nome não informado")
+            existsOrError(user.nameUser, "Nome de usuário não informado")
             existsOrError(user.email, "E-mail não informado")
             existsOrError(user.password, "Senha não informada")
             existsOrError(user.confirmPassword, "Confirmação de senha invalida")
             equalsOrError(user.password, user.confirmPassword, "Senha não conferem")
 
             const userFromDB = await app.db("users").where({ email: user.email }).first()
+            const nameUserFromDB = await app.db("users").where({ nameUser: user.nameUser }).first()
 
             if(!user.id) {
                 notExistsOrError(userFromDB, "Usuário já cadastrado")
+            }
+
+            if (nameUserFromDB) {
+                notExistsOrError(nameUserFromDB, "O nome de usuário já existe")
             }
         } catch(msg) {
             return res.status(400).send(msg)
