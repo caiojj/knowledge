@@ -25,6 +25,7 @@ module.exports = app => {
             id: user.id,
             name: user.name,
             imageUrl: user.imageUrl,
+            nameUser: user.nameUser,
             email: user.email,
             admin: user.admin,
             iat: now,
