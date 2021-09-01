@@ -4,9 +4,11 @@ exports.up = function(knex) {
         table.increments('id').primary()
         table.string('name').notNull()
         table.string('imageUrl', 1000)
+        table.bigInteger('followers').notNull().defaultTo(0)
+        table.bigInteger('following').notNull().defaultTo(0)
+        table.string('nameUser').unique().notNull()
         table.string('email').notNull().unique()
         table.string('password').notNull()
-        table.boolean('admin').notNull().defaultTo(false)
     })
 };
 
