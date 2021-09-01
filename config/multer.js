@@ -32,7 +32,6 @@ module.exports = {
             'image/png',
             'image/gif'
         ]
-
         if (allowedMimes.includes(file.mimetype)) {
             cb(null, true)
         } else {

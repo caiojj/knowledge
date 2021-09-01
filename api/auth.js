@@ -24,6 +24,7 @@ module.exports = app => {
         const payload = {
             id: user.id,
             name: user.name,
+            imageUrl: user.imageUrl,
             email: user.email,
             admin: user.admin,
             iat: now,
